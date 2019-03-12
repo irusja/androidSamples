@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">android_samples</string>
+    <string name="main_text">Java Guru</string>
 </resources>
