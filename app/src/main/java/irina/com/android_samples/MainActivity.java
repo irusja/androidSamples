@@ -1,5 +1,6 @@
 package irina.com.android_samples;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         layout.setBackgroundColor(Color.CYAN);
+
+        //go to login page
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 
 }

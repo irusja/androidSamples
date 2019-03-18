@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">примеры_андроида</string>
+    <string name="main_text">Java Guru</string>
+    <string name="email">Почта</string>
+    <string name="password">Пароль</string>
+    <string name="login">Логин</string>
+</resources>
