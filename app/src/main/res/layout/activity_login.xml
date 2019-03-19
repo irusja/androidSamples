@@ -56,8 +56,6 @@
                 android:layout_gravity="center"
                 android:onClick="onLoginPress"/>
 
-            <include layout="@layout/header"/>
-
         </LinearLayout>
 
     </ScrollView>

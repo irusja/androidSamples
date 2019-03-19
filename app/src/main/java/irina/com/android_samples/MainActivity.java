@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
         layout.setBackgroundColor(Color.CYAN);
 
         //go to login page
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//        startActivity(intent);
     }
 
 }
