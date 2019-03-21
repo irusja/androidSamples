@@ -6,7 +6,8 @@
     android:orientation="vertical"
     tools:context=".RegistrationActivity">
 
-    <include layout="@layout/header"/>
+    <include layout="@layout/header"
+        android:id="@+id/registration_header"/>
 
     <ScrollView
         android:layout_width="match_parent"
