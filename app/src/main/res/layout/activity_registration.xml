@@ -87,7 +87,7 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:id="@+id/agreement"
-                android:text="Agree to Terms"/>
+                android:text="@string/agree_to_terms"/>
 
             <Button
                 android:layout_width="wrap_content"
