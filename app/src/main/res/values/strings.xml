@@ -13,4 +13,16 @@
     <string name="friday">Friday</string>
     <string name="submit">Submit</string>
     <string name="agree_to_terms">Agree to Terms</string>
+
+    <string-array name="streets_array">
+        <item>Dzirnavu</item>
+        <item>Terbates</item>
+        <item>Stabu</item>
+        <item>Matisa</item>
+        <item>Marijas</item>
+        <item>Avotu</item>
+        <item>Caka</item>
+        <item>Brivibas</item>
+    </string-array>
+
 </resources>
