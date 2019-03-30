@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class Lesson3Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -88,16 +87,16 @@ public class Lesson3Activity extends AppCompatActivity implements AdapterView.On
                     convertView = getLayoutInflater().inflate(R.layout.list_item, null, false);
                 }
 
-                ViewHolder viewHolder = (ViewHolder) convertView.getTag();
-                if (viewHolder == null) {
-                    viewHolder = new ViewHolder();
-                    viewHolder.textViewName = convertView.findViewById(R.id.textName);
-                    viewHolder.textViewDescription = convertView.findViewById(R.id.textDescription);
+                ViewHolderCheese viewHolderCheese = (ViewHolderCheese) convertView.getTag();
+                if (viewHolderCheese == null) {
+                    viewHolderCheese = new ViewHolderCheese();
+                    viewHolderCheese.textViewName = convertView.findViewById(R.id.textName);
+                    viewHolderCheese.textViewDescription = convertView.findViewById(R.id.textDescription);
 
-                    convertView.setTag(viewHolder);
+                    convertView.setTag(viewHolderCheese);
                 }
-                viewHolder.textViewName.setText(cheese.name);
-                viewHolder.textViewDescription.setText(cheese.description);
+                viewHolderCheese.textViewName.setText(cheese.name);
+                viewHolderCheese.textViewDescription.setText(cheese.description);
 
                 return convertView;
             }
@@ -105,7 +104,7 @@ public class Lesson3Activity extends AppCompatActivity implements AdapterView.On
 
         ListView listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
-        setContentView(listView);
+        //setContentView(listView);
 
 
     }
