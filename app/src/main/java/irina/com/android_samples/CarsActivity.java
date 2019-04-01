@@ -8,12 +8,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarsActivity extends AppCompatActivity {
 
@@ -22,7 +23,7 @@ public class CarsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cars);
 
-        final ArrayList<CarObject> carsList = getCarObjects();
+        final List<CarObject> carsList = getCarObjects();
 
         ArrayAdapter<CarObject> adapter = new ArrayAdapter<CarObject>(this, 0, carsList) {
             @NonNull
@@ -58,30 +59,23 @@ public class CarsActivity extends AppCompatActivity {
     }
 
     @NonNull
-    private ArrayList<CarObject> getCarObjects() {
+    private List<CarObject> getCarObjects() {
         Resources res = getResources();
-        final String[] carsNameArray = res.getStringArray(R.array.car_types);
-        final ArrayList<CarObject> carsList = new ArrayList<>();
-        for (int i = 0; i < carsNameArray.length; i++) {
-            String carName = carsNameArray[i];
+        List<String> carsNameArray = Arrays.asList(res.getStringArray(R.array.car_types));
+        return carsNameArray.stream().map(carName -> {
             int resourceId = this.getResources().getIdentifier(carName.toLowerCase(), "drawable", getPackageName());
-            Drawable carImage = getResources().getDrawable(resourceId);
-            CarObject newCar = new CarObject(carName, carImage);
-            carsList.add(newCar);
-        }
-        return carsList;
+            Drawable carImage = getResources().getDrawable(resourceId, null);
+            return new CarObject(carName, carImage);
+        }).collect(Collectors.toList());
     }
 
     private void setOnTouchListener(GridView view) {
-        view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowId) {
-                Resources res = getResources();
-                String[] items = res.getStringArray(R.array.car_types);
+        view.setOnItemClickListener((adapterView, view1, position, rowId) -> {
+            Resources res = getResources();
+            String[] items = res.getStringArray(R.array.car_types);
 
-                Toast toast = Toast.makeText(getApplicationContext(), items[position], Toast.LENGTH_SHORT);
-                toast.show();
-            }
+            Toast toast = Toast.makeText(getApplicationContext(), items[position], Toast.LENGTH_SHORT);
+            toast.show();
         });
     }
 
