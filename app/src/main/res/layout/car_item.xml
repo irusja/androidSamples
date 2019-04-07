@@ -7,17 +7,17 @@
     <ImageView
         android:id="@+id/carPicture"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="120dp"
         android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/carDescription"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#0000FF"
+        android:background="@color/carBackground"
         android:gravity="center"
         android:text="Hello world"
-        android:textColor="#FFF"
+        android:textColor="@color/white"
         android:textSize="30sp" />
 
 </LinearLayout>

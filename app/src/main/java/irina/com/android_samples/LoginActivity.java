@@ -31,7 +31,8 @@ public class LoginActivity extends AppCompatActivity {
             showErrorPopup();
         } else {
             //go to registration page
-            Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+            //Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+            Intent intent = new Intent(LoginActivity.this, PhotoActivity.class);
             startActivity(intent);
         }
     }

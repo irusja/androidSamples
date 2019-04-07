@@ -37,10 +37,7 @@ public class CarsActivity extends AppCompatActivity {
 
                 ViewHolderCar viewHolderCar = (ViewHolderCar) convertView.getTag();
                 if (viewHolderCar == null) {
-                    viewHolderCar = new ViewHolderCar();
-                    viewHolderCar.textViewCarDescription = convertView.findViewById(R.id.carDescription);
-                    viewHolderCar.imageViewCarPicture = convertView.findViewById(R.id.carPicture);
-
+                    viewHolderCar = new ViewHolderCar(convertView);
                     convertView.setTag(viewHolderCar);
                 }
                 viewHolderCar.textViewCarDescription.setText(car.carName);
