@@ -5,6 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="grey">#EDEDED</color>
     <color name="black">#000000</color>
-    <color name="carBackground">#0000FF</color>
+    <color name="descriptionBackground">#0000FF</color>
     <color name="white">#FFF</color>
 </resources>

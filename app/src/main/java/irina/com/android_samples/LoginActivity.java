@@ -11,6 +11,8 @@ import android.widget.EditText;
 
 import org.apache.commons.lang3.StringUtils;
 
+import irina.com.android_samples.gallery.GalleryActivity;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -32,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             //go to registration page
             //Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
-            Intent intent = new Intent(LoginActivity.this, PhotoActivity.class);
+            Intent intent = new Intent(LoginActivity.this, GalleryActivity.class);
             startActivity(intent);
         }
     }

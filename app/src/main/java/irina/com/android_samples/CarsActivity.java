@@ -21,7 +21,7 @@ public class CarsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cars);
+        setContentView(R.layout.activity_gallery);
 
         final List<CarObject> carsList = getCarObjects();
 
@@ -47,7 +47,7 @@ public class CarsActivity extends AppCompatActivity {
             }
         };
 
-        GridView view = findViewById(R.id.gridViewCars);
+        GridView view = findViewById(R.id.gridViewGallery);
         view.setAdapter(adapter);
         view.setNumColumns(2);
 
