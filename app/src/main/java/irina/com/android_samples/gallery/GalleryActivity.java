@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 
 import irina.com.android_samples.R;
-import irina.com.android_samples.dataSources.unsplash.NetworkingManagerUnsplash;
+import irina.com.android_samples.dataSources.giph.NetworkingManagerGiphy;
 import irina.com.android_samples.interfaces.NetworkingManager;
 import irina.com.android_samples.interfaces.NetworkingManagerResult;
 import irina.com.android_samples.interfaces.PhotoItem;
@@ -22,7 +22,8 @@ public class GalleryActivity extends AppCompatActivity implements NetworkingMana
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        NetworkingManager networkingManager = new NetworkingManagerUnsplash(this);
+        //NetworkingManager networkingManager = new NetworkingManagerUnsplash(this);
+        NetworkingManager networkingManager = new NetworkingManagerGiphy(this);
         networkingManager.getImages();
     }
 
