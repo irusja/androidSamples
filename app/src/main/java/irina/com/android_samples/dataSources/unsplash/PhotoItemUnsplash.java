@@ -1,20 +1,25 @@
-package irina.com.android_samples;
+package irina.com.android_samples.dataSources.unsplash;
 
 import java.util.Map;
 
-public class PhotoItem {
+import irina.com.android_samples.interfaces.PhotoItem;
+
+public class PhotoItemUnsplash implements PhotoItem {
 
     User user;
     Map<String, String> urls;
 
+    @Override
     public String getImgUrl() {
         return urls.get("regular");
     }
 
-    public String getName() {
+    @Override
+    public String getUserName() {
         return user.name;
     }
 
+    @Override
     public String getLocation() {
         return user.location;
     }

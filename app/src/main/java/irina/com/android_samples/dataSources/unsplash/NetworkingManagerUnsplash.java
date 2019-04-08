@@ -1,4 +1,4 @@
-package irina.com.android_samples.download.impl;
+package irina.com.android_samples.dataSources.unsplash;
 
 import com.google.gson.Gson;
 
@@ -10,33 +10,33 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import irina.com.android_samples.PhotoItem;
-import irina.com.android_samples.download.NetworkManager;
-import irina.com.android_samples.download.NetworkResultListener;
+import irina.com.android_samples.interfaces.NetworkingManager;
+import irina.com.android_samples.interfaces.NetworkingManagerResult;
+import irina.com.android_samples.interfaces.PhotoItem;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class NetworkManagerImpl implements NetworkManager, Callback {
+public class NetworkingManagerUnsplash implements NetworkingManager, Callback {
 
-    private static final String PHOTO_TOP_10 = "https://api.unsplash.com/photos/?client_id=311ed690d7678d20b8ce556e56d5bf168d6ddf9fa1126e58193d95089d796542";
+    private static final String UNSPLASH_URL = "https://api.unsplash.com/photos/?client_id=311ed690d7678d20b8ce556e56d5bf168d6ddf9fa1126e58193d95089d796542";
 
     private List<PhotoItem> photoItems = new ArrayList<>();
 
-    NetworkResultListener resultListener;
+    NetworkingManagerResult resultCallback;
 
-    public NetworkManagerImpl(NetworkResultListener resultListener) {
-        this.resultListener = resultListener;
+    public NetworkingManagerUnsplash(NetworkingManagerResult resultCallback) {
+        this.resultCallback = resultCallback;
     }
 
     @Override
-    public void getGalleryItems() {
+    public void getImages() {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url(PHOTO_TOP_10)
+                .url(UNSPLASH_URL)
                 .build();
         client.newCall(request).enqueue(this);
     }
@@ -49,12 +49,12 @@ public class NetworkManagerImpl implements NetworkManager, Callback {
             JSONArray array = new JSONArray(jsonData);
             for (int i = 0; i < array.length(); i++) {
                 JSONObject imgObject = array.getJSONObject(i);
-                PhotoItem item = gson.fromJson(imgObject.toString(), PhotoItem.class);
+                PhotoItemUnsplash item = gson.fromJson(imgObject.toString(), PhotoItemUnsplash.class);
                 photoItems.add(item);
             }
 
-            if (this.resultListener != null) {
-                this.resultListener.onGalleryItemsCompleteCallback(photoItems);
+            if (this.resultCallback != null) {
+                this.resultCallback.onGetItemsCompleteCallback(photoItems);
             }
         } catch (JSONException e) {
             e.printStackTrace();

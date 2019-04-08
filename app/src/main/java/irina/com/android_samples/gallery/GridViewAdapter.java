@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import irina.com.android_samples.PhotoItem;
+import irina.com.android_samples.interfaces.PhotoItem;
 
 public class GridViewAdapter extends ArrayAdapter {
 
@@ -41,7 +41,7 @@ public class GridViewAdapter extends ArrayAdapter {
 
         PhotoItem photoItem = (PhotoItem) data.get(position);
         Picasso.get().load(photoItem.getImgUrl()).into(gridItemViewHolder.imageViewPhotoPicture);
-        gridItemViewHolder.textViewPhotoDescription.setText(photoItem.getName());
+        gridItemViewHolder.textViewPhotoDescription.setText(photoItem.getUserName());
         gridItemViewHolder.textViewLocation.setText(photoItem.getLocation());
 
         return convertView;

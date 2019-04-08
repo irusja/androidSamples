@@ -9,26 +9,26 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-import irina.com.android_samples.PhotoItem;
 import irina.com.android_samples.R;
-import irina.com.android_samples.download.NetworkManager;
-import irina.com.android_samples.download.NetworkResultListener;
-import irina.com.android_samples.download.impl.NetworkManagerImpl;
+import irina.com.android_samples.dataSources.unsplash.NetworkingManagerUnsplash;
+import irina.com.android_samples.interfaces.NetworkingManager;
+import irina.com.android_samples.interfaces.NetworkingManagerResult;
+import irina.com.android_samples.interfaces.PhotoItem;
 
-public class GalleryActivity extends AppCompatActivity implements NetworkResultListener {
+public class GalleryActivity extends AppCompatActivity implements NetworkingManagerResult {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        NetworkManager networkManager = new NetworkManagerImpl(this);
-        networkManager.getGalleryItems();
+        NetworkingManager networkingManager = new NetworkingManagerUnsplash(this);
+        networkingManager.getImages();
     }
 
     @Override
-    public void onGalleryItemsCompleteCallback(List<PhotoItem> photoItems) {
-        runOnUiThread(() -> showPhotoItems(photoItems));
+    public void onGetItemsCompleteCallback(List<PhotoItem> photoItem) {
+        runOnUiThread(() -> showPhotoItems(photoItem));
     }
 
     private void showPhotoItems(List<PhotoItem> items) {
