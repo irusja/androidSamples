@@ -1,7 +1,7 @@
-package irina.com.android_samples.presenters.gridView;
+package irina.com.android_samples.presenters.listV;
 
 import android.app.Activity;
-import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import org.apache.commons.lang3.StringUtils;
@@ -13,18 +13,17 @@ import irina.com.android_samples.gallery.ViewAdapter;
 import irina.com.android_samples.interfaces.PhotoItem;
 import irina.com.android_samples.interfaces.PhotoItemsPresenter;
 
-public class PhotoItemsPresenterGridView implements PhotoItemsPresenter {
+public class PhotoItemsPresenterListView implements PhotoItemsPresenter {
 
     @Override
     public void showPhotoItems(Activity activity, List<PhotoItem> photoItems) {
-        GridView view = activity.findViewById(R.id.viewGallery);
+        ListView view = activity.findViewById(R.id.viewGallery);
         ViewAdapter adapter = new ViewAdapter(activity, R.layout.grid_view_item, photoItems);
         view.setAdapter(adapter);
-        view.setNumColumns(2);
         setOnTouchListener(activity, view);
     }
 
-    private void setOnTouchListener(Activity activity, GridView view) {
+    private void setOnTouchListener(Activity activity, ListView view) {
         view.setOnItemClickListener((adapterView, view1, position, rowId) -> {
             PhotoItem photoItem = (PhotoItem) adapterView.getItemAtPosition(position);
 

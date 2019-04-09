@@ -47,7 +47,7 @@ public class CarsActivity extends AppCompatActivity {
             }
         };
 
-        GridView view = findViewById(R.id.gridViewGallery);
+        GridView view = findViewById(R.id.viewGallery);
         view.setAdapter(adapter);
         view.setNumColumns(2);
 

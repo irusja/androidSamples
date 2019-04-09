@@ -13,13 +13,13 @@ import java.util.List;
 
 import irina.com.android_samples.interfaces.PhotoItem;
 
-public class GridViewAdapter extends ArrayAdapter {
+public class ViewAdapter extends ArrayAdapter {
 
     private Context context;
     private int layoutResourceId;
     private List data;
 
-    public GridViewAdapter(Context context, int layoutResourceId, List data) {
+    public ViewAdapter(Context context, int layoutResourceId, List data) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
@@ -33,16 +33,16 @@ public class GridViewAdapter extends ArrayAdapter {
             convertView = inflater.inflate(layoutResourceId, null, false);
         }
 
-        GridItemViewHolder gridItemViewHolder = (GridItemViewHolder) convertView.getTag();
-        if (gridItemViewHolder == null) {
-            gridItemViewHolder = new GridItemViewHolder(convertView);
-            convertView.setTag(gridItemViewHolder);
+        ItemViewHolder itemViewHolder = (ItemViewHolder) convertView.getTag();
+        if (itemViewHolder == null) {
+            itemViewHolder = new ItemViewHolder(convertView);
+            convertView.setTag(itemViewHolder);
         }
 
         PhotoItem photoItem = (PhotoItem) data.get(position);
-        Picasso.get().load(photoItem.getImgUrl()).into(gridItemViewHolder.imageViewPhotoPicture);
-        gridItemViewHolder.textViewPhotoDescription.setText(photoItem.getUserName());
-        gridItemViewHolder.textViewLocation.setText(photoItem.getLocation());
+        Picasso.get().load(photoItem.getImgUrl()).into(itemViewHolder.imageViewPhotoPicture);
+        itemViewHolder.textViewPhotoDescription.setText(photoItem.getUserName());
+        itemViewHolder.textViewLocation.setText(photoItem.getLocation());
 
         return convertView;
     }

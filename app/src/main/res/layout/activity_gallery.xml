@@ -5,9 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".gallery.GalleryActivity">
 
-    <GridView
-        android:id="@+id/gridViewGallery"
+    <!--<GridView-->
+        <!--android:id="@+id/viewGallery"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"></GridView>-->
+
+    <ListView
+        android:id="@+id/viewGallery"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></GridView>
+        android:layout_height="match_parent"></ListView>
 
 </LinearLayout>

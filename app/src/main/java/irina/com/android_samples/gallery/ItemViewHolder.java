@@ -8,13 +8,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import irina.com.android_samples.R;
 
-public class GridItemViewHolder {
+public class ItemViewHolder {
 
     @BindView(R.id.photoPicture) ImageView imageViewPhotoPicture;
     @BindView(R.id.photoDescription) TextView textViewPhotoDescription;
     @BindView(R.id.photoLocation) TextView textViewLocation;
 
-    public GridItemViewHolder(View view) {
+    public ItemViewHolder(View view) {
         ButterKnife.bind(this, view);
     }
 }
