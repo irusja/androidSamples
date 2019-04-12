@@ -17,11 +17,13 @@ public class PhotoItemsPresenterGridView implements PhotoItemsPresenter {
 
     @Override
     public void showPhotoItems(Activity activity, List<PhotoItem> photoItems) {
-        GridView view = activity.findViewById(R.id.gridViewGallery);
+        GridView view = new GridView(activity);
         ViewAdapter adapter = new ViewAdapter(activity, R.layout.grid_view_item, photoItems);
         view.setAdapter(adapter);
         view.setNumColumns(2);
         setOnTouchListener(activity, view);
+
+        activity.setContentView(view);
     }
 
     private void setOnTouchListener(Activity activity, GridView view) {

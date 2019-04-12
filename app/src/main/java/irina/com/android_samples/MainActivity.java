@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.Random;
 
-import irina.com.android_samples.gallery.GalleryGridActivity;
+import irina.com.android_samples.gallery.GalleryActivity;
 import irina.com.android_samples.gallery.GalleryListActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,14 +43,14 @@ public class MainActivity extends AppCompatActivity {
         layout.setBackgroundColor(Color.CYAN);
     }
 
-    public void openGallery(View view) { //TODO: change
+    public void openGallery(View view) {
         RadioButton gridViewButton = findViewById(R.id.gridViewRadioButton);
-        Intent intent;
-        if (gridViewButton.isChecked()) {
-            intent = new Intent(MainActivity.this, GalleryGridActivity.class);
-        } else {
-            intent = new Intent(MainActivity.this, GalleryListActivity.class);
-        }
+        RadioButton unsplashRadioButton = findViewById(R.id.unsplashRadioButton);
+
+        GalleryActivity.ImageProvider imageProvider = unsplashRadioButton.isChecked() ? GalleryActivity.ImageProvider.Unsplash : GalleryActivity.ImageProvider.Giphy;
+        GalleryActivity.PresenterType presenterType = gridViewButton.isChecked() ? GalleryActivity.PresenterType.Grid : GalleryActivity.PresenterType.List;
+        Intent intent = GalleryActivity.buildIntent(this, imageProvider, presenterType);
+
         startActivity(intent);
     }
 
