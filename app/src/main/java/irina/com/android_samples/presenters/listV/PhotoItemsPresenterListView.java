@@ -17,7 +17,7 @@ public class PhotoItemsPresenterListView implements PhotoItemsPresenter {
 
     @Override
     public void showPhotoItems(Activity activity, List<PhotoItem> photoItems) {
-        ListView view = activity.findViewById(R.id.viewGallery);
+        ListView view = activity.findViewById(R.id.listViewGallery);
         ViewAdapter adapter = new ViewAdapter(activity, R.layout.grid_view_item, photoItems);
         view.setAdapter(adapter);
         setOnTouchListener(activity, view);

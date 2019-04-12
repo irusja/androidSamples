@@ -14,19 +14,17 @@ import irina.com.android_samples.interfaces.PhotoItemsPresenter;
 import irina.com.android_samples.presenters.listV.PhotoItemsPresenterListView;
 
 
-public class GalleryActivity extends AppCompatActivity implements NetworkingManagerResult {
+public class GalleryListActivity extends AppCompatActivity implements NetworkingManagerResult {
 
     private PhotoItemsPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gallery);
+        setContentView(R.layout.activity_list_gallery);
 
-        //presenter = new PhotoItemsPresenterGridView();
         presenter = new PhotoItemsPresenterListView();
 
-        //NetworkingManager networkingManager = new NetworkingManagerUnsplash(this);
         NetworkingManager networkingManager = new NetworkingManagerGiphy(this);
         networkingManager.getImages();
     }

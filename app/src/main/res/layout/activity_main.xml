@@ -10,28 +10,65 @@
 
     <!--stairs-->
     <LinearLayout
-        android:layout_width="50dp"
+        android:layout_width="100dp"
         android:layout_height="50dp"
         android:background="#FF00FF">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="login"
+            android:layout_gravity="center"
+            android:onClick="openLoginActivity"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="50dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginLeft="50dp"
         android:background="#FF00">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="registration"
+            android:layout_gravity="center"
+            android:onClick="openRegistrationActivity"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
         android:layout_marginLeft="100dp"
         android:background="#00FF00">
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/layout_type">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/gridViewRadioButton"
+                android:checked="true"
+                android:text="@string/grid_view"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:id="@+id/listViewRadioButton"
+                android:text="@string/list_view"/>
+        </RadioGroup>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center_vertical"
+            android:onClick="openGallery"
+            android:text="@string/open_gallery" />
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FF00">
+        android:background="#06ba78">
 
         <Button
             android:layout_width="wrap_content"

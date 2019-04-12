@@ -13,6 +13,9 @@
     <string name="friday">Friday</string>
     <string name="submit">Submit</string>
     <string name="agree_to_terms">Agree to Terms</string>
+    <string name="grid_view">Grid view</string>
+    <string name="list_view">List View</string>
+    <string name="open_gallery">Open gallery</string>
 
     <string-array name="streets_array">
         <item>Dzirnavu</item>
