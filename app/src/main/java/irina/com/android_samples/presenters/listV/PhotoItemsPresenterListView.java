@@ -17,10 +17,12 @@ public class PhotoItemsPresenterListView implements PhotoItemsPresenter {
 
     @Override
     public void showPhotoItems(Activity activity, List<PhotoItem> photoItems) {
-        ListView view = activity.findViewById(R.id.listViewGallery);
+        ListView view = new ListView(activity);
         ViewAdapter adapter = new ViewAdapter(activity, R.layout.grid_view_item, photoItems);
         view.setAdapter(adapter);
         setOnTouchListener(activity, view);
+
+        activity.setContentView(view);
     }
 
     private void setOnTouchListener(Activity activity, ListView view) {
