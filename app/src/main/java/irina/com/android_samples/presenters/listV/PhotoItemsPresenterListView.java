@@ -12,15 +12,19 @@ import irina.com.android_samples.R;
 import irina.com.android_samples.gallery.ViewAdapter;
 import irina.com.android_samples.interfaces.PhotoItem;
 import irina.com.android_samples.interfaces.PhotoItemsPresenter;
+import irina.com.android_samples.interfaces.PhotoItemsPresenterCallback;
 
 public class PhotoItemsPresenterListView implements PhotoItemsPresenter {
 
     @Override
-    public void showPhotoItems(Activity activity, List<PhotoItem> photoItems) {
+    public void showPhotoItems(Activity activity, List<PhotoItem> photoItems, PhotoItemsPresenterCallback callback) {
         ListView view = new ListView(activity);
         ViewAdapter adapter = new ViewAdapter(activity, R.layout.grid_view_item, photoItems);
         view.setAdapter(adapter);
-        setOnTouchListener(activity, view);
+        //setOnTouchListener(activity, view);
+        view.setOnItemClickListener((adapterView, gridView, position, id) -> {
+            callback.onItemSelected(photoItems.get(position));
+        });
 
         activity.setContentView(view);
     }

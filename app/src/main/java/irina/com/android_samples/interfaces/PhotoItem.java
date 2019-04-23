@@ -1,6 +1,8 @@
 package irina.com.android_samples.interfaces;
 
-public interface PhotoItem {
+import java.io.Serializable;
+
+public interface PhotoItem extends Serializable {
 
     String getImgUrl();
 

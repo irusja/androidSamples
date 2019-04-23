@@ -19,14 +19,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity
             android:name=".RegistrationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Lesson3Activity"></activity>
-        <activity android:name=".CarsActivity"></activity>
-        <activity android:name=".gallery.GalleryActivity"></activity>
-        <activity android:name=".gallery.GalleryListActivity"></activity>
+        <activity android:name=".Lesson3Activity" />
+        <activity android:name=".CarsActivity" />
+        <activity android:name=".gallery.GalleryActivity" />
+        <activity android:name=".gallery.GalleryListActivity" />
+        <activity android:name=".ShareActivity" />
+        <activity android:name=".ShareActivityWithFragment"></activity>
     </application>
 
 </manifest>

@@ -8,16 +8,18 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.List;
 
 import irina.com.android_samples.R;
+import irina.com.android_samples.ShareActivityWithFragment;
 import irina.com.android_samples.dataSources.giph.NetworkingManagerGiphy;
 import irina.com.android_samples.dataSources.unsplash.NetworkingManagerUnsplash;
 import irina.com.android_samples.interfaces.NetworkingManager;
 import irina.com.android_samples.interfaces.NetworkingManagerResult;
 import irina.com.android_samples.interfaces.PhotoItem;
 import irina.com.android_samples.interfaces.PhotoItemsPresenter;
+import irina.com.android_samples.interfaces.PhotoItemsPresenterCallback;
 import irina.com.android_samples.presenters.gridView.PhotoItemsPresenterGridView;
 import irina.com.android_samples.presenters.listV.PhotoItemsPresenterListView;
 
-public class GalleryActivity extends AppCompatActivity implements NetworkingManagerResult {
+public class GalleryActivity extends AppCompatActivity implements NetworkingManagerResult, PhotoItemsPresenterCallback {
 
     private static String IMAGE_PROVIDER_KEY = "IMAGE_PROVIDER_KEY";
     private static String PRESENTER_KEY = "PRESENTER_KEY";
@@ -31,7 +33,6 @@ public class GalleryActivity extends AppCompatActivity implements NetworkingMana
         Grid,
         List
     }
-
 
     private PhotoItemsPresenter presenter;
 
@@ -83,7 +84,19 @@ public class GalleryActivity extends AppCompatActivity implements NetworkingMana
 
     @Override
     public void onGetItemsCompleteCallback(List<PhotoItem> photoItem) {
-        runOnUiThread(() -> presenter.showPhotoItems(this, photoItem));
+        runOnUiThread(() -> presenter.showPhotoItems(this, photoItem, this));
+    }
+
+    @Override
+    public void onItemSelected(PhotoItem item) {
+//        Intent intent = ShareActivity.buildIntent(this, item);
+//        startActivity(intent);
+
+        //Intent intent = new Intent(this, ShareActivityWithFragment.class);
+        //startActivity(intent);
+
+        Intent intent = ShareActivityWithFragment.buildIntent(this, item);
+        startActivity(intent);
     }
 
 }

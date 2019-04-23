@@ -1,5 +1,6 @@
 package irina.com.android_samples.dataSources.unsplash;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import irina.com.android_samples.interfaces.PhotoItem;
@@ -24,7 +25,7 @@ public class PhotoItemUnsplash implements PhotoItem {
         return user.location;
     }
 
-    class User {
+    class User implements Serializable {
 
         String name;
         String location;
