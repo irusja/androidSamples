@@ -20,12 +20,20 @@
         android:layout_below="@+id/imageView"/>
 
     <Button
+        android:id="@+id/buttonShare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
-        android:text="Info"
-        android:id="@+id/infoButton"/>
+        android:layout_marginBottom="20dp"
+        android:text="@string/share" />
+    <Button
+        android:id="@+id/buttonInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:text="@string/info" />
 
 </RelativeLayout>

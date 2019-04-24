@@ -14,7 +14,7 @@ import irina.com.android_samples.interfaces.NetworkingManagerResult;
 import irina.com.android_samples.interfaces.PhotoItem;
 import irina.com.android_samples.interfaces.PhotoItemsPresenter;
 import irina.com.android_samples.interfaces.PhotoItemsPresenterCallback;
-import irina.com.android_samples.presenters.listV.PhotoItemsPresenterListView;
+import irina.com.android_samples.presenters.listViewPresenters.PhotoItemsPresenterListView;
 
 
 public class GalleryListActivity extends AppCompatActivity implements NetworkingManagerResult, PhotoItemsPresenterCallback {

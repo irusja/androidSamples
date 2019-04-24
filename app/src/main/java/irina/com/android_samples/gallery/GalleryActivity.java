@@ -16,8 +16,8 @@ import irina.com.android_samples.interfaces.NetworkingManagerResult;
 import irina.com.android_samples.interfaces.PhotoItem;
 import irina.com.android_samples.interfaces.PhotoItemsPresenter;
 import irina.com.android_samples.interfaces.PhotoItemsPresenterCallback;
-import irina.com.android_samples.presenters.gridView.PhotoItemsPresenterGridView;
-import irina.com.android_samples.presenters.listV.PhotoItemsPresenterListView;
+import irina.com.android_samples.presenters.gridViewPresenters.PhotoItemsPresenterGridView;
+import irina.com.android_samples.presenters.listViewPresenters.PhotoItemsPresenterListView;
 
 public class GalleryActivity extends AppCompatActivity implements NetworkingManagerResult, PhotoItemsPresenterCallback {
 
@@ -89,13 +89,7 @@ public class GalleryActivity extends AppCompatActivity implements NetworkingMana
 
     @Override
     public void onItemSelected(PhotoItem item) {
-//        Intent intent = ShareActivity.buildIntent(this, item);
-//        startActivity(intent);
-
-        //Intent intent = new Intent(this, ShareActivityWithFragment.class);
-        //startActivity(intent);
-
-        Intent intent = ShareActivityWithFragment.buildIntent(this, item);
+        Intent intent = ShareActivityWithFragment.buildIntent(this, item, ShareActivityWithFragment.class);
         startActivity(intent);
     }
 

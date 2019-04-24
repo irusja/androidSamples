@@ -1,5 +1,7 @@
 package irina.com.android_samples.dataSources.unsplash;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
 import java.util.Map;
 
@@ -22,7 +24,7 @@ public class PhotoItemUnsplash implements PhotoItem {
 
     @Override
     public String getLocation() {
-        return user.location;
+        return StringUtils.isBlank(user.location) ? "Not provided" : user.location;
     }
 
     class User implements Serializable {

@@ -1,4 +1,4 @@
-package irina.com.android_samples.presenters.listV;
+package irina.com.android_samples.presenters.listViewPresenters;
 
 import android.app.Activity;
 import android.widget.ListView;

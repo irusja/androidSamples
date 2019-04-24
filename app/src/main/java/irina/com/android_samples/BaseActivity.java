@@ -11,12 +11,13 @@ import irina.com.android_samples.interfaces.PhotoItem;
 public class BaseActivity extends Activity {
 
     private static String PHOTO_ITEM_KEY = "PHOTO_ITEM_KEY";
-    private static String TEXT_VIEW_DATA_KEY = "TEXT_VIEW_DATA_KEY";
+    protected static String COMMENT_KEY = "COMMENT_KEY";
+    protected static int INTENT_SHARE_CODE = 888;
 
     protected PhotoItem photoItem;
 
-    public static Intent buildIntent(Context context, PhotoItem photoItem) {
-        Intent intent = new Intent(context, ShareActivityWithFragment.class); //should be ShareActivity
+    public static Intent buildIntent(Context context, PhotoItem photoItem, Class className) {
+        Intent intent = new Intent(context, className);
         intent.putExtra(PHOTO_ITEM_KEY, photoItem);
         return intent;
     }
@@ -24,7 +25,6 @@ public class BaseActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         this.photoItem = (PhotoItem) getIntent().getSerializableExtra(PHOTO_ITEM_KEY);
     }
 }

@@ -1,15 +1,12 @@
 package irina.com.android_samples;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,44 +17,43 @@ public class ShareActivity extends BaseActivity {
     @BindView(R.id.textViewAuthor) TextView textViewAuthor;
     @BindView(R.id.imageView) ImageView imageView;
 
-    private static String PHOTO_ITEM_KEY = "PHOTO_ITEM_KEY";
-    private static String TEXT_VIEW_DATA_KEY = "TEXT_VIEW_DATA_KEY";
-
     protected PhotoItem photoItem;
-
-    public static Intent buildIntent(Context context, PhotoItem photoItem) {
-        Intent intent = new Intent(context, ShareActivityWithFragment.class); //should be ShareActivity
-        intent.putExtra(PHOTO_ITEM_KEY, photoItem);
-        return intent;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_share);
         ButterKnife.bind(this);
 
-        if(getIntent().getSerializableExtra(PHOTO_ITEM_KEY) != null) {
-            this.photoItem = (PhotoItem) getIntent().getSerializableExtra(PHOTO_ITEM_KEY);
-            this.textViewAuthor.setText(photoItem.getUserName());
-            Picasso.get().load(photoItem.getImgUrl()).into(this.imageView);
-        }
-
+        setupUI();
     }
 
-//    public void onSetButtonClick(View view) {
-//        textView.setText(editText.getText());
-//    }
+    private void setupUI() {
+        this.textViewAuthor.setText(photoItem.getUserName());
+        Glide.with(this).load(photoItem.getImgUrl()).into(this.imageView);
+    }
+
+    public void onShareButton(View view) {
+        // Create intent with action
+        Intent i = new Intent(Intent.ACTION_SEND);
+        // Set additions
+        i.setType("text/plain");
+        i.putExtra(Intent.EXTRA_SUBJECT, "Sharing URL");
+        i.putExtra(Intent.EXTRA_TEXT, photoItem.getImgUrl());
+        // Start intent
+        startActivityForResult(Intent.createChooser(i, "Share URL"),INTENT_SHARE_CODE,null);
+    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) { //before screen rotation
         super.onSaveInstanceState(outState);
-        //outState.putCharSequence(TEXT_VIEW_DATA_KEY, textView.getText());
+        outState.putCharSequence(COMMENT_KEY, textViewAuthor.getText());
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) { //after screen rotation
         super.onRestoreInstanceState(savedInstanceState);
-        //textView.setText(savedInstanceState.getCharSequence(TEXT_VIEW_DATA_KEY));
+        textViewAuthor.setText(savedInstanceState.getCharSequence(COMMENT_KEY));
     }
 }

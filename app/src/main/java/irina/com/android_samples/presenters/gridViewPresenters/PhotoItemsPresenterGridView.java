@@ -1,4 +1,4 @@
-package irina.com.android_samples.presenters.gridView;
+package irina.com.android_samples.presenters.gridViewPresenters;
 
 import android.app.Activity;
 import android.widget.GridView;
