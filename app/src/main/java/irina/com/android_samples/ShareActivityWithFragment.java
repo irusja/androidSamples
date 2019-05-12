@@ -3,6 +3,7 @@ package irina.com.android_samples;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 
 import irina.com.android_samples.fragments.InfoFragment;
 import irina.com.android_samples.fragments.ShareFragment;
@@ -32,7 +33,7 @@ public class ShareActivityWithFragment extends BaseActivity implements ShareFrag
         // Assign needed values
         fragment.photoItem = this.photoItem;
         // Set fragment to layout
-        ft.replace(R.id.frameLayout, fragment); //.addToBackStack("TAG_FRAGMENT")
+        ft.replace(R.id.frameLayout, fragment).addToBackStack(null);
         // Perform changes
         ft.commit();
     }
@@ -45,7 +46,7 @@ public class ShareActivityWithFragment extends BaseActivity implements ShareFrag
         // Pass PhotoImage object to info InfoFragment
         fragment.photoItem = this.photoItem;
         // Set fragment to layout
-        ft.replace(R.id.frameLayout, fragment); //.addToBackStack("TAG_FRAGMENT")
+        ft.replace(R.id.frameLayout, fragment).addToBackStack(null);
         // Perform changes
         ft.commit();
     }
@@ -81,4 +82,12 @@ public class ShareActivityWithFragment extends BaseActivity implements ShareFrag
 //        }
 //    }
 
+    /// lecture 7//
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            //call showFragment with flag value dependency
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
 }
