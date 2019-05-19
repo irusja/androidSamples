@@ -18,8 +18,8 @@
         android:gravity="center"
         android:text="Unable download element"
         android:textColor="@color/white"
-        android:visibility="gone"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/photoDescription"
@@ -30,5 +30,14 @@
         android:text="Unable download element"
         android:textColor="@color/white"
         android:textSize="20sp" />
+
+    <ImageButton
+        android:id="@+id/buttonFavorite"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/favorite_off" />
 
 </LinearLayout>

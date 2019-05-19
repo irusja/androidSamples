@@ -1,12 +1,12 @@
-package irina.com.android_samples.dataSources.unsplash;
+package irina.com.android_samples.dataSources.giphy;
 
 import android.util.Log;
 
 import com.google.gson.Gson;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,9 +21,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class NetworkingManagerUnsplash implements NetworkingManager {
-
-    private static final String UNSPLASH_URL = "https://api.unsplash.com/photos/?client_id=311ed690d7678d20b8ce556e56d5bf168d6ddf9fa1126e58193d95089d796542";
+public class NetworkingManagerGiphy implements NetworkingManager {
 
     private List<PhotoItem> photoItems = new ArrayList<>();
     private int limit = 50;
@@ -50,12 +48,12 @@ public class NetworkingManagerUnsplash implements NetworkingManager {
     private void getItems(NetworkingManagerResult result) {
         OkHttpClient client = new OkHttpClient();
 
-        //TODO: change URL
         Request request = new Request.Builder()
-                .url(UNSPLASH_URL)
+                .url("https://api.giphy.com/v1/stickers/trending?api_key=VvyONhZ6eUFDFtuwg7w9tUYXzgefYdYy&limit=" + limit + "&offset=" + offset + "&rating=G")
                 .build();
         requestInProgress = true;
         client.newCall(request).enqueue(new Callback() {
+
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
@@ -64,21 +62,25 @@ public class NetworkingManagerUnsplash implements NetworkingManager {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final Gson gson = new Gson();
-                String jsonData = response.body() != null ? response.body().string() : null;
+                String jsonString = response.body() != null ? response.body().string() : null;
                 try {
-                    JSONArray array = new JSONArray(jsonData);
-                    for (int i = 0; i < array.length(); i++) {
-                        JSONObject imgObject = array.getJSONObject(i);
-                        PhotoItemUnsplash item = gson.fromJson(imgObject.toString(), PhotoItemUnsplash.class);
+                    JsonElement jelement = new JsonParser().parse(jsonString);
+                    JsonObject jsonData = jelement.getAsJsonObject();
+                    JsonArray jsonArray = jsonData.getAsJsonArray("data");
+
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        JsonElement imgObject = jsonArray.get(i);
+                        PhotoItemGiphy item = gson.fromJson(imgObject.toString(), PhotoItemGiphy.class);
                         photoItems.add(item);
                     }
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     Log.e("ERROR", e.getLocalizedMessage());
                 } finally {
                     requestInProgress = false;
                     result.onGetItemsCompleteCallback(photoItems);
                 }
             }
+
         });
     }
 

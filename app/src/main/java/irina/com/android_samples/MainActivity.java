@@ -12,7 +12,6 @@ import android.widget.TextView;
 import java.util.Random;
 
 import irina.com.android_samples.gallery.GalleryActivity;
-import irina.com.android_samples.gallery.GalleryListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
