@@ -21,6 +21,9 @@ import irina.com.android_samples.presenters.listViewPresenters.PhotoItemsPresent
 
 public class GalleryActivity extends AppCompatActivity implements PhotoItemsPresenterCallback {
 
+    //TODO: Change URL for Unsplash
+    //*TODO 6 EXTRA EXTRA: Implement safe remove (do not delete anything from database)
+
     private static String IMAGE_PROVIDER_KEY = "IMAGE_PROVIDER_KEY";
     private static String PRESENTER_KEY = "PRESENTER_KEY";
 
@@ -87,11 +90,7 @@ public class GalleryActivity extends AppCompatActivity implements PhotoItemsPres
         }
 
         // Get images
-        networkingManager.getImages(photoItems ->
-                runOnUiThread(()-> {
-                    presenter.showPhotoItems(this, photoItems, this);
-                })
-        );
+        getImages();
     }
 
     @Override
@@ -129,9 +128,18 @@ public class GalleryActivity extends AppCompatActivity implements PhotoItemsPres
     public void onItemToggleFavorite(PhotoItem item) {
         if (item.isSavedToDatabase()) {
             item.deleteFromDatabase();
+            getImages();
         } else {
             item.saveToDatabase();
         }
+    }
+
+    private void getImages() {
+        networkingManager.getImages(photoItems ->
+                runOnUiThread(()-> {
+                    presenter.showPhotoItems(this, photoItems, this);
+                })
+        );
     }
 
     @Override
