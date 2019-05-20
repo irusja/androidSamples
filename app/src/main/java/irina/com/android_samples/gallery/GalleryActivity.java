@@ -104,18 +104,21 @@ public class GalleryActivity extends AppCompatActivity implements PhotoItemsPres
         getMenuInflater().inflate(R.menu.top_menu, menu);
 
         final MenuItem favoriteMenuItem = menu.findItem(R.id.action_show_favotites);
+        favoriteMenuItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_NEVER);
         favoriteMenuItem.setOnMenuItemClickListener(menuItem -> {
             showImagesService(ImageProvider.Favorites);
             return true;
         });
 
         final MenuItem showUnsplashMenuItem = menu.findItem(R.id.action_show_unslash);
+        showUnsplashMenuItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_NEVER);
         showUnsplashMenuItem.setOnMenuItemClickListener(menuItem -> {
             showImagesService(ImageProvider.Unsplash);
             return true;
         });
 
         final MenuItem showGiphyMenuItem = menu.findItem(R.id.action_show_giphy);
+        showGiphyMenuItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_NEVER);
         showGiphyMenuItem.setOnMenuItemClickListener(menuItem -> {
             showImagesService(ImageProvider.Giphy);
             return true;
