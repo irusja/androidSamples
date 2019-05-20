@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface PhotoItemsPresenter {
 
-    void showPhotoItems(Activity activity, List<PhotoItem> photoItems);
+    void showPhotoItems(Activity activity, List<PhotoItem> photoItems, PhotoItemsPresenterCallback callback);
+    void updateWithItems(List<PhotoItem> photoItems);
 
 }
