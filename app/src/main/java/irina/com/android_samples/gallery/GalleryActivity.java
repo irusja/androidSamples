@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import irina.com.android_samples.R;
 import irina.com.android_samples.ShareActivityWithFragment;
 import irina.com.android_samples.dataSources.giphy.NetworkingManagerGiphy;
@@ -18,6 +20,11 @@ import irina.com.android_samples.interfaces.PhotoItemsPresenter;
 import irina.com.android_samples.interfaces.PhotoItemsPresenterCallback;
 import irina.com.android_samples.presenters.gridViewPresenters.PhotoItemsPresenterGridView;
 import irina.com.android_samples.presenters.listViewPresenters.PhotoItemsPresenterListView;
+import irina.com.android_samples.presenters.recyclerViewPresenters.PhotoItemsPresenterRecyclerView;
+
+import static irina.com.android_samples.gallery.GalleryActivity.ImageProvider.Favorites;
+import static irina.com.android_samples.gallery.GalleryActivity.ImageProvider.Giphy;
+import static irina.com.android_samples.gallery.GalleryActivity.ImageProvider.Unsplash;
 
 public class GalleryActivity extends AppCompatActivity implements PhotoItemsPresenterCallback {
 
@@ -35,7 +42,8 @@ public class GalleryActivity extends AppCompatActivity implements PhotoItemsPres
 
     public enum PresenterType {
         Grid,
-        List
+        List,
+        Recycler
     }
 
     private NetworkingManager networkingManager = null;
@@ -70,6 +78,10 @@ public class GalleryActivity extends AppCompatActivity implements PhotoItemsPres
             case List:
                 presenter = new PhotoItemsPresenterListView();
                 break;
+            case Recycler:
+                presenter = new PhotoItemsPresenterRecyclerView();
+                //presenter = new PhotoItemsPresenterListView();
+                break;
         }
 
         showImagesService(imageProvider);
@@ -80,17 +92,26 @@ public class GalleryActivity extends AppCompatActivity implements PhotoItemsPres
         switch (imageProvider) {
             case Unsplash:
                 networkingManager = new NetworkingManagerUnsplash();
+                register_event(Unsplash.name());
                 break;
             case Giphy:
                 networkingManager = new NetworkingManagerGiphy();
+                register_event(Giphy.name());
                 break;
             case Favorites:
                 networkingManager = new NetworkingManagerLocal();
+                register_event(Favorites.name());
                 break;
         }
 
         // Get images
         getImages();
+    }
+
+    private void register_event(String serviceName) {
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, serviceName);
+        FirebaseAnalytics.getInstance(this).logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
     }
 
     @Override

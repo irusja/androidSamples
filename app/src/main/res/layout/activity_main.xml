@@ -53,6 +53,11 @@
                 android:layout_height="30dp"
                 android:id="@+id/listViewRadioButton"
                 android:text="@string/list_view"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:id="@+id/recyclerViewRadioButton"
+                android:text="@string/recycler_view"/>
         </RadioGroup>
         <RadioGroup
             android:layout_width="wrap_content"

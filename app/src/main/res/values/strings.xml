@@ -46,5 +46,6 @@
     <string name="share">Share</string>
     <string name="info">Info</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="recycler_view">Recycler View</string>
 
 </resources>

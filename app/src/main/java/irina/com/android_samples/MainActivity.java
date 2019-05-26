@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 //        showNotificationAfterDelay(getNotificationWithAction("My notification", "Hello World!"), 5000);
 //        showNotificationAfterDelay(getNotificationWithProgress(), 5000);
 
+        //throw new RuntimeException("This is a crash");
     }
 
     private void changeBackgroundColor() {
@@ -57,9 +58,11 @@ public class MainActivity extends AppCompatActivity {
     public void openGallery(View view) {
         RadioButton gridViewButton = findViewById(R.id.gridViewRadioButton);
         RadioButton unsplashRadioButton = findViewById(R.id.unsplashRadioButton);
+        RadioButton recyclerViewRadioButton = findViewById(R.id.recyclerViewRadioButton);
 
         GalleryActivity.ImageProvider imageProvider = unsplashRadioButton.isChecked() ? GalleryActivity.ImageProvider.Unsplash : GalleryActivity.ImageProvider.Giphy;
-        GalleryActivity.PresenterType presenterType = gridViewButton.isChecked() ? GalleryActivity.PresenterType.Grid : GalleryActivity.PresenterType.List;
+        GalleryActivity.PresenterType presenterType = gridViewButton.isChecked() ? GalleryActivity.PresenterType.Grid :
+                (recyclerViewRadioButton.isChecked() ? GalleryActivity.PresenterType.Recycler : GalleryActivity.PresenterType.List);
         Intent intent = GalleryActivity.buildIntent(this, imageProvider, presenterType);
 
         startActivity(intent);

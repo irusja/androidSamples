@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "596457519098",
+    "firebase_url": "https://android-samples-123.firebaseio.com",
+    "project_id": "android-samples-123",
+    "storage_bucket": "android-samples-123.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596457519098:android:27ff435c93c5e4a8",
+        "android_client_info": {
+          "package_name": "irina.com.android_samples"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "596457519098-bqca49lstomfqiatgo6nlaakgded07b0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb-7Su_COihovZS8ZoTGhEMI_T40O4Q_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "596457519098-bqca49lstomfqiatgo6nlaakgded07b0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
