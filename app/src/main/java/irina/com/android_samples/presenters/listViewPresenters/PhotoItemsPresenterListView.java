@@ -27,10 +27,6 @@ public class PhotoItemsPresenterListView implements PhotoItemsPresenter {
         this.adapter = new ViewAdapter(activity, R.layout.grid_view_item, this.photoItems, callback);
         view.setAdapter(adapter);
 
-        view.setOnItemClickListener((adapterView, gridView, position, id) -> {
-            callback.onItemSelected(this.photoItems.get(position));
-        });
-
         view.setOnScrollListener(new AbsListView.OnScrollListener(){
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)

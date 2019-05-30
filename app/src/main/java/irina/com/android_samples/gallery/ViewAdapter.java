@@ -50,16 +50,14 @@ public class ViewAdapter extends ArrayAdapter {
         //set favorite button behaviour
         updateFavoriteButton(itemViewHolder.buttonFavorite, photoItem);
         ItemViewHolder finalItemViewHolder = itemViewHolder;
-        itemViewHolder.buttonFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callback.onItemToggleFavorite(photoItem);//save to DB!!!!
-                updateFavoriteButton(finalItemViewHolder.buttonFavorite, photoItem);
-            }
+        itemViewHolder.buttonFavorite.setOnClickListener(view -> {
+            callback.onItemToggleFavorite(photoItem);//save to DB!!!!
+            updateFavoriteButton(finalItemViewHolder.buttonFavorite, photoItem);
         });
 
+        itemViewHolder.imageViewPhotoPicture.setOnClickListener(view -> callback.onItemSelected(photoItem));
+
         Glide.with(convertView).load(photoItem.getImgUrl()).into(itemViewHolder.imageViewPhotoPicture);
-        //Picasso.get().load(photoItem.getImgUrl()).into(itemViewHolder.imageViewPhotoPicture);
         itemViewHolder.textViewPhotoDescription.setText(photoItem.getUserName());
         itemViewHolder.textViewLocation.setText(photoItem.getLocation());
 

@@ -42,11 +42,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderRecyclerView
 
         //set favorite button behaviour
         updateFavoriteButton(holder.buttonFavorite, photoItem);
-        ViewHolderRecyclerView finalItemViewHolder = holder;
+
         holder.buttonFavorite.setOnClickListener(view -> {
             callback.onItemToggleFavorite(photoItem);
-            updateFavoriteButton(finalItemViewHolder.buttonFavorite, photoItem);
+            updateFavoriteButton(holder.buttonFavorite, photoItem);
         });
+
+        holder.imageViewPhoto.setOnClickListener(view -> callback.onItemSelected(photoItem));
 
         holder.textViewLocation.setText(photoItem.getLocation());
         holder.textViewAuthor.setText(photoItem.getUserName());

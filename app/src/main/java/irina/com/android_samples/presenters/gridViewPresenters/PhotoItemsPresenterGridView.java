@@ -28,10 +28,6 @@ public class PhotoItemsPresenterGridView implements PhotoItemsPresenter {
         view.setAdapter(this.adapter);
         view.setNumColumns(2);
 
-        view.setOnItemClickListener((adapterView, gridView, position, id) -> {
-            callback.onItemSelected(this.photoItems.get(position));
-        });
-
         view.setOnScrollListener(new AbsListView.OnScrollListener(){
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)

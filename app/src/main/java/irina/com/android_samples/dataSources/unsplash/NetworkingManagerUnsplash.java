@@ -37,20 +37,20 @@ public class NetworkingManagerUnsplash implements NetworkingManager {
 
     @Override
     public void fetchNewItemsFromPosition(int lastPosition, NetworkingManagerResult result) {
-        if (requestInProgress) {
-            return;
-        }
-        if (offset <= lastPosition) {
-            requestInProgress = true;
-            offset += limit;
-            getImages(result);
-        }
+        //TODO: change URL
+//        if (requestInProgress) {
+//            return;
+//        }
+//        if (offset <= lastPosition) {
+//            requestInProgress = true;
+//            offset += limit;
+//            getImages(result);
+//        }
     }
 
     private void getItems(NetworkingManagerResult result) {
         OkHttpClient client = new OkHttpClient();
 
-        //TODO: change URL
         Request request = new Request.Builder()
                 .url(UNSPLASH_URL)
                 .build();
