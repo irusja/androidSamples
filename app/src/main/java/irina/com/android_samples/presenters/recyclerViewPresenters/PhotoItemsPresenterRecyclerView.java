@@ -28,7 +28,7 @@ public class PhotoItemsPresenterRecyclerView implements PhotoItemsPresenter {
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(activity,2);
         this.mRecyclerView.setLayoutManager(mLayoutManager);
 
-        this.mAdapter = new Adapter(photoItems);
+        this.mAdapter = new Adapter(photoItems, callback);
         this.mRecyclerView.setAdapter(mAdapter);
 
         this.mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {

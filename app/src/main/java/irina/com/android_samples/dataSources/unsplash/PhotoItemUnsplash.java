@@ -51,7 +51,7 @@ public class PhotoItemUnsplash implements PhotoItem {
 
     @Override
     public String getLocation() {
-        return StringUtils.isBlank(user.location) ? "Not provided" : user.location;
+        return (user == null || StringUtils.isBlank(user.location)) ? "Not provided" : user.location;
     }
 
     class User implements Serializable {

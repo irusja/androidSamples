@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -16,13 +16,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import irina.com.android_samples.R;
 import irina.com.android_samples.interfaces.PhotoItem;
+import irina.com.android_samples.interfaces.PhotoItemsPresenterCallback;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderRecyclerView> {
 
     List<PhotoItem> photoItems;
+    private PhotoItemsPresenterCallback callback;
 
-    public Adapter(List<PhotoItem> photoItems) {
+    public Adapter(List<PhotoItem> photoItems, PhotoItemsPresenterCallback callback) {
         this.photoItems = photoItems;
+        this.callback = callback;
     }
 
     // Create new views (invoked by the layout manager)
@@ -35,17 +38,33 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderRecyclerView
 
     @Override
     public void onBindViewHolder(ViewHolderRecyclerView holder, int position) {
-
         PhotoItem photoItem = this.photoItems.get(position);
+
+        //set favorite button behaviour
+        updateFavoriteButton(holder.buttonFavorite, photoItem);
+        ViewHolderRecyclerView finalItemViewHolder = holder;
+        holder.buttonFavorite.setOnClickListener(view -> {
+            callback.onItemToggleFavorite(photoItem);
+            updateFavoriteButton(finalItemViewHolder.buttonFavorite, photoItem);
+        });
 
         holder.textViewLocation.setText(photoItem.getLocation());
         holder.textViewAuthor.setText(photoItem.getUserName());
-        Picasso.get().load(photoItem.getImgUrl()).placeholder(R.drawable.placeholder).into(holder.imageViewPhoto);
+        Glide.with(holder.itemView).load(photoItem.getImgUrl()).placeholder(R.drawable.placeholder).into(holder.imageViewPhoto);
     }
 
     @Override
     public int getItemCount() {
         return this.photoItems.size();
+    }
+
+    private void updateFavoriteButton(ImageButton imageButton, PhotoItem photoItem) {
+        boolean isFavorited = photoItem.isSavedToDatabase();
+        if(isFavorited) {
+            imageButton.setImageResource(R.drawable.favorite_on);
+        } else {
+            imageButton.setImageResource(R.drawable.favorite_off);
+        }
     }
 
     public static class ViewHolderRecyclerView extends RecyclerView.ViewHolder {
@@ -57,7 +76,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderRecyclerView
         @BindView(R.id.photoLocation)
         TextView textViewLocation;
         @BindView(R.id.buttonFavorite)
-        public ImageButton button;
+        public ImageButton buttonFavorite;
 
         ViewHolderRecyclerView(View view) {
             super(view);

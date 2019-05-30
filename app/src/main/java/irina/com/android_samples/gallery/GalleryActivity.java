@@ -80,7 +80,6 @@ public class GalleryActivity extends AppCompatActivity implements PhotoItemsPres
                 break;
             case Recycler:
                 presenter = new PhotoItemsPresenterRecyclerView();
-                //presenter = new PhotoItemsPresenterListView();
                 break;
         }
 
