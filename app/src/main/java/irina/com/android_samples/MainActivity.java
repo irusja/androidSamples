@@ -15,6 +15,8 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.onesignal.OneSignal;
+
 import java.util.Random;
 
 import irina.com.android_samples.gallery.GalleryActivity;
@@ -26,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         changeBackgroundColor();
+
+        OneSignal.startInit(this)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                .unsubscribeWhenNotificationsAreDisabled(true)
+                .init();
+
+        OneSignal.setEmail("example@domain.com");
 
         showNotificationAfterDelay(getNotificationWithAction("Hey!", "Its time to look at new inspiring images!"), 86400000);
 //        showNotificationAfterDelay(getBasicNotification("My notification", "Much longer text that cannot fit one line..."), 5000);
