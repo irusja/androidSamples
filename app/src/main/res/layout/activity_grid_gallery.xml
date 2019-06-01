@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".gallery.GalleryActivity">
 
+    <LinearLayout
+        android:id="@+id/adContainer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical">
+    </LinearLayout>
+
     <GridView
         android:id="@+id/gridViewGallery"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></GridView>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
+    </GridView>
 
-</LinearLayout>
+</RelativeLayout>

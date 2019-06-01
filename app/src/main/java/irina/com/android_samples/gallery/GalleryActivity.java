@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.kaibagarov.android_helpers.DKAdHelper;
 
+import irina.com.android_samples.BuildConfig;
 import irina.com.android_samples.R;
 import irina.com.android_samples.ShareActivityWithFragment;
 import irina.com.android_samples.dataSources.giphy.NetworkingManagerGiphy;
@@ -22,32 +25,33 @@ import irina.com.android_samples.presenters.gridViewPresenters.PhotoItemsPresent
 import irina.com.android_samples.presenters.listViewPresenters.PhotoItemsPresenterListView;
 import irina.com.android_samples.presenters.recyclerViewPresenters.PhotoItemsPresenterRecyclerView;
 
-import static irina.com.android_samples.gallery.GalleryActivity.ImageProvider.Favorites;
-import static irina.com.android_samples.gallery.GalleryActivity.ImageProvider.Giphy;
-import static irina.com.android_samples.gallery.GalleryActivity.ImageProvider.Unsplash;
+import static irina.com.android_samples.gallery.GalleryActivity.ImageProvider.FAVORITES;
+import static irina.com.android_samples.gallery.GalleryActivity.ImageProvider.GIPHY;
+import static irina.com.android_samples.gallery.GalleryActivity.ImageProvider.UNSPLASH;
 
 public class GalleryActivity extends AppCompatActivity implements PhotoItemsPresenterCallback {
 
-    //TODO: Change URL for Unsplash
+    //TODO: Change URL for UNSPLASH
     //*TODO 6 EXTRA EXTRA: Implement safe remove (do not delete anything from database)
 
     private static String IMAGE_PROVIDER_KEY = "IMAGE_PROVIDER_KEY";
     private static String PRESENTER_KEY = "PRESENTER_KEY";
 
     public enum ImageProvider {
-        Unsplash,
-        Giphy,
-        Favorites
+        UNSPLASH,
+        GIPHY,
+        FAVORITES
     }
 
     public enum PresenterType {
-        Grid,
-        List,
-        Recycler
+        GRID,
+        LIST,
+        RECYCLER
     }
 
     private NetworkingManager networkingManager = null;
     private PhotoItemsPresenter presenter;
+    DKAdHelper adHelper;
 
     public static Intent buildIntent(Context context, ImageProvider imageProvider, PresenterType presenterType) {
         Intent intent = new Intent(context, GalleryActivity.class);
@@ -72,34 +76,50 @@ public class GalleryActivity extends AppCompatActivity implements PhotoItemsPres
 
         // Set presenter
         switch (presenterType) {
-            case Grid:
+            case GRID:
                 presenter = new PhotoItemsPresenterGridView();
                 break;
-            case List:
+            case LIST:
                 presenter = new PhotoItemsPresenterListView();
                 break;
-            case Recycler:
+            case RECYCLER:
                 presenter = new PhotoItemsPresenterRecyclerView();
                 break;
         }
 
+        addAd();
+
         showImagesService(imageProvider);
+
+    }
+
+    private void addAd() {
+        LinearLayout adContainer = findViewById(R.id.adContainer);
+        adHelper = new DKAdHelper(this,"ca-app-pub-3944370616318042~4397243224"); // Publisher ID
+        adHelper.bannerAdUnitID = "ca-app-pub-3944370616318042/4104711135"; // Banner ID -> test can be taken from "https://developers.google.com/admob/android/test-ads"
+        adHelper.containerForAD = adContainer;
+
+        if (BuildConfig.DEBUG) {
+            adHelper.showTestAdBanner();
+        } else {
+            adHelper.showAdBanner();
+        }
     }
 
     private void showImagesService(ImageProvider imageProvider) {
         // Set networking
         switch (imageProvider) {
-            case Unsplash:
+            case UNSPLASH:
                 networkingManager = new NetworkingManagerUnsplash();
-                register_event(Unsplash.name());
+                register_event(UNSPLASH.name());
                 break;
-            case Giphy:
+            case GIPHY:
                 networkingManager = new NetworkingManagerGiphy();
-                register_event(Giphy.name());
+                register_event(GIPHY.name());
                 break;
-            case Favorites:
+            case FAVORITES:
                 networkingManager = new NetworkingManagerLocal();
-                register_event(Favorites.name());
+                register_event(FAVORITES.name());
                 break;
         }
 
@@ -126,21 +146,21 @@ public class GalleryActivity extends AppCompatActivity implements PhotoItemsPres
         final MenuItem favoriteMenuItem = menu.findItem(R.id.action_show_favotites);
         favoriteMenuItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_NEVER);
         favoriteMenuItem.setOnMenuItemClickListener(menuItem -> {
-            showImagesService(ImageProvider.Favorites);
+            showImagesService(ImageProvider.FAVORITES);
             return true;
         });
 
         final MenuItem showUnsplashMenuItem = menu.findItem(R.id.action_show_unslash);
         showUnsplashMenuItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_NEVER);
         showUnsplashMenuItem.setOnMenuItemClickListener(menuItem -> {
-            showImagesService(ImageProvider.Unsplash);
+            showImagesService(ImageProvider.UNSPLASH);
             return true;
         });
 
         final MenuItem showGiphyMenuItem = menu.findItem(R.id.action_show_giphy);
         showGiphyMenuItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_NEVER);
         showGiphyMenuItem.setOnMenuItemClickListener(menuItem -> {
-            showImagesService(ImageProvider.Giphy);
+            showImagesService(ImageProvider.GIPHY);
             return true;
         });
 

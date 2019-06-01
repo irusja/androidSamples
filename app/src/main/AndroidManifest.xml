@@ -26,6 +26,9 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="irina.com.android_samples" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3944370616318042~4397243224"/>
 
         <activity android:name=".MainActivity">
             <intent-filter>

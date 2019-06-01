@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
         RadioButton unsplashRadioButton = findViewById(R.id.unsplashRadioButton);
         RadioButton recyclerViewRadioButton = findViewById(R.id.recyclerViewRadioButton);
 
-        GalleryActivity.ImageProvider imageProvider = unsplashRadioButton.isChecked() ? GalleryActivity.ImageProvider.Unsplash : GalleryActivity.ImageProvider.Giphy;
-        GalleryActivity.PresenterType presenterType = gridViewButton.isChecked() ? GalleryActivity.PresenterType.Grid :
-                (recyclerViewRadioButton.isChecked() ? GalleryActivity.PresenterType.Recycler : GalleryActivity.PresenterType.List);
+        GalleryActivity.ImageProvider imageProvider = unsplashRadioButton.isChecked() ? GalleryActivity.ImageProvider.UNSPLASH : GalleryActivity.ImageProvider.GIPHY;
+        GalleryActivity.PresenterType presenterType = gridViewButton.isChecked() ? GalleryActivity.PresenterType.GRID :
+                (recyclerViewRadioButton.isChecked() ? GalleryActivity.PresenterType.RECYCLER : GalleryActivity.PresenterType.LIST);
         Intent intent = GalleryActivity.buildIntent(this, imageProvider, presenterType);
 
         startActivity(intent);
