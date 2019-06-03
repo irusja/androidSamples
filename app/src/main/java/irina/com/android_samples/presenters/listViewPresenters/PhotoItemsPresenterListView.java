@@ -2,6 +2,7 @@ package irina.com.android_samples.presenters.listViewPresenters;
 
 import android.app.Activity;
 import android.widget.AbsListView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,7 +22,7 @@ public class PhotoItemsPresenterListView implements PhotoItemsPresenter {
     ViewAdapter adapter;
 
     @Override
-    public void showPhotoItems(Activity activity, List<PhotoItem> photoItems, PhotoItemsPresenterCallback callback) {
+    public void showPhotoItems(Activity activity, List<PhotoItem> photoItems, PhotoItemsPresenterCallback callback, LinearLayout layout) {
         this.photoItems = photoItems;
         ListView view = new ListView(activity);
         this.adapter = new ViewAdapter(activity, R.layout.grid_view_item, this.photoItems, callback);
@@ -42,7 +43,9 @@ public class PhotoItemsPresenterListView implements PhotoItemsPresenter {
             }
         });
 
-        activity.setContentView(view);
+        layout.removeAllViews();
+        layout.addView(view);
+        //activity.setContentView(view);
     }
 
     @Override

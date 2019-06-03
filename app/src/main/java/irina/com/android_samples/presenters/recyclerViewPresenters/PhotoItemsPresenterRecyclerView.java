@@ -3,6 +3,7 @@ package irina.com.android_samples.presenters.recyclerViewPresenters;
 import android.app.Activity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.LinearLayout;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class PhotoItemsPresenterRecyclerView implements PhotoItemsPresenter {
     private RecyclerView mRecyclerView;
 
     @Override
-    public void showPhotoItems(Activity activity, List<PhotoItem> photoItems, PhotoItemsPresenterCallback callback) {
+    public void showPhotoItems(Activity activity, List<PhotoItem> photoItems, PhotoItemsPresenterCallback callback, LinearLayout layout) {
         this.photoItems = photoItems;
         this.mRecyclerView = new RecyclerView(activity);
 
@@ -44,7 +45,9 @@ public class PhotoItemsPresenterRecyclerView implements PhotoItemsPresenter {
             }
         });
 
-        activity.setContentView(mRecyclerView);
+        layout.removeAllViews();
+        layout.addView(this.mRecyclerView);
+        //activity.setContentView(mRecyclerView);
     }
 
     @Override

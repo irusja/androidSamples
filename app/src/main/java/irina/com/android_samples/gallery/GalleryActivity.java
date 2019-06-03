@@ -51,6 +51,7 @@ public class GalleryActivity extends AppCompatActivity implements PhotoItemsPres
 
     private NetworkingManager networkingManager = null;
     private PhotoItemsPresenter presenter;
+    private LinearLayout mainLayout;
     DKAdHelper adHelper;
 
     public static Intent buildIntent(Context context, ImageProvider imageProvider, PresenterType presenterType) {
@@ -87,6 +88,7 @@ public class GalleryActivity extends AppCompatActivity implements PhotoItemsPres
                 break;
         }
 
+        this.mainLayout = findViewById(R.id.main_layout);
         addAd();
 
         showImagesService(imageProvider);
@@ -180,7 +182,7 @@ public class GalleryActivity extends AppCompatActivity implements PhotoItemsPres
     private void getImages() {
         networkingManager.getImages(photoItems ->
                 runOnUiThread(()-> {
-                    presenter.showPhotoItems(this, photoItems, this);
+                    presenter.showPhotoItems(this, photoItems, this, this.mainLayout);
                 })
         );
     }

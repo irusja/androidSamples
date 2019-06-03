@@ -1,8 +1,10 @@
 package irina.com.android_samples.presenters.gridViewPresenters;
 
 import android.app.Activity;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.apache.commons.lang3.StringUtils;
@@ -21,7 +23,7 @@ public class PhotoItemsPresenterGridView implements PhotoItemsPresenter {
     ViewAdapter adapter;
 
     @Override
-    public void showPhotoItems(Activity activity, List<PhotoItem> photoItems, PhotoItemsPresenterCallback callback) {
+    public void showPhotoItems(Activity activity, List<PhotoItem> photoItems, PhotoItemsPresenterCallback callback, LinearLayout layout) {
         this.photoItems = photoItems;
         GridView view = new GridView(activity);
         this.adapter = new ViewAdapter(activity, R.layout.grid_view_item, this.photoItems, callback);
@@ -43,7 +45,9 @@ public class PhotoItemsPresenterGridView implements PhotoItemsPresenter {
             }
         });
 
-        activity.setContentView(view);
+        layout.removeAllViews();
+        layout.addView(view);
+        //activity.setContentView(view);
     }
 
     @Override
